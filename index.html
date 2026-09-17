@@ -104,6 +104,41 @@
             background-color: rgba(197, 160, 89, 0.15);
         }
 
+        /* Animated Motion Client Ticker */
+        .ticker-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: #0b1321;
+            padding: 15px 0;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            gap: 40px;
+            animation: tickerScroll 20s linear infinite;
+        }
+
+        .ticker-item {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticker-item span {
+            color: var(--accent-gold-bright);
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* Vertical Page Scroll Container */
         main {
             max-width: 950px;
@@ -241,6 +276,16 @@
             font-size: 0.9rem;
         }
 
+        .service-photo-banner {
+            width: 100%;
+            height: 130px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            background-color: #0b1321;
+        }
+
         .click-hint {
             color: var(--accent-gold);
             font-weight: 700;
@@ -263,18 +308,6 @@
 
         .sub-card.open .expandable-content {
             display: block;
-        }
-
-        .service-diagram-box {
-            width: 100%;
-            height: 120px;
-            background-color: #0b1321;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(197, 160, 89, 0.3);
         }
 
         footer {
@@ -325,6 +358,22 @@
             <h2 class="card-header-title">Enterprise Capabilities & Cloud Engineering</h2>
             <p style="color: var(--text-muted);">Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
             
+            <!-- ANIMATED CLIENT TICKER -->
+            <div class="ticker-container">
+                <div class="ticker-track">
+                    <div class="ticker-item"><span>◆</span> Global Financial Corp</div>
+                    <div class="ticker-item"><span>◆</span> Apex Logistics Hub</div>
+                    <div class="ticker-item"><span>◆</span> CyberShield Security</div>
+                    <div class="ticker-item"><span>◆</span> NextWave Cloud Inc</div>
+                    <div class="ticker-item"><span>◆</span> Gulf Electronics</div>
+                    <div class="ticker-item"><span>◆</span> Global Financial Corp</div>
+                    <div class="ticker-item"><span>◆</span> Apex Logistics Hub</div>
+                    <div class="ticker-item"><span>◆</span> CyberShield Security</div>
+                    <div class="ticker-item"><span>◆</span> NextWave Cloud Inc</div>
+                    <div class="ticker-item"><span>◆</span> Gulf Electronics</div>
+                </div>
+            </div>
+
             <div class="grid-layout">
                 <div class="sub-card" onclick="toggleExpand(this)">
                     <h3>IT Systems & Cloud Infrastructure</h3>
@@ -390,18 +439,14 @@
             </div>
         </div>
 
-        <!-- 3. SERVICES SECTION -->
+        <!-- 3. SERVICES SECTION WITH PHOTOS/DIAGRAMS -->
         <div id="services" class="content-card">
             <h2 class="card-header-title">Enterprise Service Catalog</h2>
             <p style="color: var(--text-muted); margin-bottom: 15px;">Click on any service card below to read the comprehensive technical overview.</p>
             
             <div class="grid-layout">
                 <div class="sub-card" onclick="toggleExpand(this)">
-                    <div class="service-diagram-box">
-                        <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                            <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
-                        </svg>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&auto=format&fit=crop&q=80" alt="Managed IT Systems" class="service-photo-banner">
                     <h3>Managed IT Systems & Active Directory</h3>
                     <p>Complete M365 licensing, Group Policy Objects, and directory synchronization.</p>
                     <span class="click-hint">Click to read full overview ▼</span>
@@ -411,11 +456,7 @@
                 </div>
 
                 <div class="sub-card" onclick="toggleExpand(this)">
-                    <div class="service-diagram-box">
-                        <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80" alt="Cybersecurity" class="service-photo-banner">
                     <h3>Cybersecurity Operations & Intune MDM</h3>
                     <p>Real-time threat isolation and Microsoft Intune enrollment.</p>
                     <span class="click-hint">Click to read full overview ▼</span>
@@ -425,16 +466,42 @@
                 </div>
 
                 <div class="sub-card" onclick="toggleExpand(this)">
-                    <div class="service-diagram-box">
-                        <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-                        </svg>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="Software Engineering" class="service-photo-banner">
                     <h3>Full-Stack Software Engineering</h3>
                     <p>Java Spring Boot microservices, REST APIs, and React interfaces.</p>
                     <span class="click-hint">Click to read full overview ▼</span>
                     <div class="expandable-content">
                         <strong>Full Scope:</strong> Custom end-to-end web software development, REST API design, single-page application (SPA) engineering in React, database schema indexing, and automated CI/CD pipeline setup.
+                    </div>
+                </div>
+
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80" alt="Network Design" class="service-photo-banner">
+                    <h3>Enterprise Network & VPN Routing</h3>
+                    <p>High-availability routing, VPN tunneling, VLAN segmentation, and perimeter firewalls.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        Redundant gateway design with failover protection, automated traffic shaping, and remote access VPN setup via Cisco AnyConnect.
+                    </div>
+                </div>
+
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&auto=format&fit=crop&q=80" alt="Hardware Procurement" class="service-photo-banner">
+                    <h3>Hardware Sales & Custom Procurement</h3>
+                    <p>Sourcing high-performance desktop components, workstations, and servers.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        Custom hardware procurement matching precise workloads: Intel/AMD multi-core CPUs, NVIDIA RTX GPUs, high-frequency DDR5 memory, and modular server rack assemblies.
+                    </div>
+                </div>
+
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80" alt="Data Analytics" class="service-photo-banner">
+                    <h3>Data Analytics & Power BI Dashboards</h3>
+                    <p>Automated ETL pipeline development and relational database indexing.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        Automated ETL pipeline development, relational database indexing in SQL, and custom interactive Power BI reporting dashboards for executive analytics.
                     </div>
                 </div>
             </div>
