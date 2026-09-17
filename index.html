@@ -15,7 +15,7 @@
             --text-muted: #64748b;
             --text-light: #f8fafc;
             --border-color: #e2e8f0;
-            --nav-height: 120px;
+            --nav-height: 125px;
         }
 
         * {
@@ -81,7 +81,7 @@
         nav {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
@@ -100,7 +100,7 @@
 
         nav button:hover, nav button.active {
             color: var(--accent-gold-bright);
-            background-color: rgba(197, 160, 89, 0.15);
+            background-color: rgba(197, 160, 89, 0.18);
         }
 
         /* Main Content Container */
@@ -141,7 +141,7 @@
             border-bottom: 2px solid var(--accent-gold);
         }
 
-        /* Detail Boxes */
+        /* Detail Panels & Contact Styling */
         .info-panel {
             background-color: #f8fafc;
             border: 1px solid var(--border-color);
@@ -186,7 +186,7 @@
             margin-bottom: 5px;
         }
 
-        /* Profile Card */
+        /* Profile Banner */
         .profile-card-dark {
             background-color: #0b1321;
             color: var(--text-light);
@@ -224,7 +224,7 @@
             font-size: 0.9rem;
         }
 
-        /* Grid Item Layouts */
+        /* Grid & Service Card Diagrams */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -237,6 +237,12 @@
             border-radius: 8px;
             padding: 20px;
             background-color: #ffffff;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .sub-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-gold);
         }
 
         .sub-card h3 {
@@ -250,6 +256,18 @@
             font-size: 0.9rem;
         }
 
+        .service-diagram-box {
+            width: 100%;
+            height: 130px;
+            background-color: #0b1321;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
         footer {
             text-align: center;
             color: #64748b;
@@ -259,7 +277,7 @@
         }
 
         @media (max-width: 768px) {
-            :root { --nav-height: 170px; }
+            :root { --nav-height: 175px; }
             .info-label { display: block; width: 100%; margin-bottom: 2px; }
             .profile-card-dark { flex-direction: column; text-align: center; }
         }
@@ -330,7 +348,7 @@
                     </div>
                 </div>
 
-                <h3 style="margin-top: 25px; margin-bottom: 10px; color: var(--text-dark);">Industry Recognition & Awards</h3>
+                <h3 style="margin-top: 25px; margin-bottom: 10px; color: var(--text-dark);">Industry Recognition & Accreditations</h3>
                 <div class="grid-layout">
                     <div class="sub-card">
                         <h3>🏆 Best Tech Solution Provider 2025</h3>
@@ -348,22 +366,71 @@
             </div>
         </div>
 
-        <!-- 3. SERVICES TAB -->
+        <!-- 3. SERVICES TAB WITH TECHNICAL ILLUSTRATIONS -->
         <div id="tab-services" class="tab-section">
             <div class="content-card">
                 <h2 class="card-header-title">Enterprise Service Offerings</h2>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Detailed breakdown of our core technical services and enterprise deployment methodologies.</p>
+                
                 <div class="grid-layout">
                     <div class="sub-card">
-                        <h3>Managed IT Services & Active Directory</h3>
+                        <div class="service-diagram-box">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                            </svg>
+                        </div>
+                        <h3>Managed IT Systems & Active Directory</h3>
                         <p>Complete Microsoft 365 licensing automation, Group Policy Objects (GPO), hybrid tenant synchronization, and automated system provisioning.</p>
                     </div>
+
                     <div class="sub-card">
+                        <div class="service-diagram-box">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
                         <h3>Cybersecurity Operations & Intune MDM</h3>
-                        <p>Real-time threat isolation, CrowdStrike Falcon setup, DLP compliance enforcement, and encrypted device management.</p>
+                        <p>Real-time threat isolation, CrowdStrike Falcon setup, DLP compliance enforcement, and encrypted device management across Windows, iOS, and macOS.</p>
                     </div>
+
                     <div class="sub-card">
+                        <div class="service-diagram-box">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                            </svg>
+                        </div>
+                        <h3>Full-Stack Software Engineering</h3>
+                        <p>Custom microservices built on Java Spring Boot, React.js frontends, and secure RESTful API integrations for high-concurrency environments.</p>
+                    </div>
+
+                    <div class="sub-card">
+                        <div class="service-diagram-box">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                        <h3>Enterprise Network & VPN Routing</h3>
+                        <p>High-availability routing, VPN tunneling, VLAN segmentation, Cisco AnyConnect configurations, and perimeter firewall installations.</p>
+                    </div>
+
+                    <div class="sub-card">
+                        <div class="service-diagram-box">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
                         <h3>Hardware Sales & Custom Procurement</h3>
-                        <p>Sourcing high-performance desktop components, Intel/AMD workstations, NVIDIA RTX GPUs, DDR5 memory, and rack servers.</p>
+                        <p>Sourcing high-performance desktop components, Intel/AMD workstations, NVIDIA RTX GPUs, DDR5 memory, and modular server racks.</p>
+                    </div>
+
+                    <div class="sub-card">
+                        <div class="service-diagram-box">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                            </svg>
+                        </div>
+                        <h3>Data Analytics & Power BI Dashboards</h3>
+                        <p>Automated ETL pipeline development, relational database indexing in SQL, and custom interactive Power BI dashboards for executive analytics.</p>
                     </div>
                 </div>
             </div>
@@ -375,16 +442,16 @@
                 <h2 class="card-header-title">Technical Architecture & Solutions</h2>
                 <div class="grid-layout">
                     <div class="sub-card">
-                        <h3>Full-Stack Application Development</h3>
-                        <p>Custom microservices built on Java Spring Boot, React.js frontends, and secure RESTful API integrations.</p>
+                        <h3>Zero-Trust Cloud Migration</h3>
+                        <p>Seamless migration from legacy on-premises Active Directory to cloud-native Microsoft Entra ID architectures with enforced MFA and conditional access.</p>
                     </div>
                     <div class="sub-card">
-                        <h3>Data Analytics & BI Dashboards</h3>
-                        <p>Automated ETL pipeline development, relational database indexing in SQL, and custom interactive Power BI dashboards.</p>
+                        <h3>Automated Endpoint Provisioning</h3>
+                        <p>Deploying Microsoft Intune Autopilot profiles for zero-touch laptop and mobile provisioning across global branch networks.</p>
                     </div>
                     <div class="sub-card">
-                        <h3>Enterprise Network & VPN Engineering</h3>
-                        <p>High-availability routing, VLAN segmentation, Cisco AnyConnect VPN configurations, and perimeter firewall installations.</p>
+                        <h3>High-Throughput Microservice Architecture</h3>
+                        <p>Engineering distributed Spring Boot applications backed by relational SQL schemas and caching layers for enterprise fault tolerance.</p>
                     </div>
                 </div>
             </div>
@@ -485,7 +552,7 @@
                     </div>
                     <div class="info-item">
                         <span class="info-label">Executive Office Email:</span>
-                        <span class="info-value"><a href="mailto:tinku@gulforigin.com">tinku@gulforigin.com</a> / <a href="mailto:tinku@tm.com">tinku@tm.com</a></span>
+                        <span class="info-value"><a href="mailto:tinku@tm.com">tinku@tm.com</a></span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">Executive Hotline:</span>
