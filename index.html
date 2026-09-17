@@ -15,7 +15,7 @@
             --text-muted: #64748b;
             --text-light: #f8fafc;
             --border-color: #e2e8f0;
-            --nav-height: 125px;
+            --nav-height: 120px;
         }
 
         * {
@@ -25,13 +25,17 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-dark);
             color: var(--text-dark);
             line-height: 1.6;
         }
 
-        /* Fixed Top Header */
+        /* Fixed Top Navigation Bar */
         header {
             position: fixed;
             top: 0;
@@ -77,59 +81,43 @@
             letter-spacing: 0.5px;
         }
 
-        /* Interactive Navigation Bar */
         nav {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        nav button {
-            background: none;
-            border: none;
+        nav a {
             color: #cbd5e1;
+            text-decoration: none;
             font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 0.8px;
             padding: 6px 12px;
             border-radius: 4px;
-            cursor: pointer;
             transition: all 0.2s ease;
         }
 
-        nav button:hover, nav button.active {
+        nav a:hover {
             color: var(--accent-gold-bright);
-            background-color: rgba(197, 160, 89, 0.18);
+            background-color: rgba(197, 160, 89, 0.15);
         }
 
-        /* Main Content Container */
+        /* Vertical Page Scroll Container */
         main {
             max-width: 950px;
             margin: var(--nav-height) auto 30px auto;
             padding: 40px 20px 50px 20px;
         }
 
-        .tab-section {
-            display: none;
-            animation: fadeIn 0.3s ease-in-out forwards;
-        }
-
-        .tab-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .content-card {
             background-color: var(--bg-card);
             border-radius: 12px;
             padding: 35px;
-            margin-bottom: 35px;
+            margin-bottom: 45px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            scroll-margin-top: calc(var(--nav-height) + 20px);
         }
 
         .card-header-title {
@@ -141,7 +129,7 @@
             border-bottom: 2px solid var(--accent-gold);
         }
 
-        /* Detail Panels & Contact Styling */
+        /* Detail Contact Panels */
         .info-panel {
             background-color: #f8fafc;
             border: 1px solid var(--border-color);
@@ -153,10 +141,6 @@
         .info-item {
             margin-bottom: 12px;
             font-size: 0.95rem;
-        }
-
-        .info-item:last-child {
-            margin-bottom: 0;
         }
 
         .info-label {
@@ -186,7 +170,7 @@
             margin-bottom: 5px;
         }
 
-        /* Profile Banner */
+        /* CEO Profile Banner */
         .profile-card-dark {
             background-color: #0b1321;
             color: var(--text-light);
@@ -224,7 +208,7 @@
             font-size: 0.9rem;
         }
 
-        /* Grid & Service Card Diagrams */
+        /* Interactive Click-to-Read Cards */
         .grid-layout {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -237,12 +221,13 @@
             border-radius: 8px;
             padding: 20px;
             background-color: #ffffff;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .sub-card:hover {
-            transform: translateY(-3px);
             border-color: var(--accent-gold);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.2);
         }
 
         .sub-card h3 {
@@ -256,9 +241,33 @@
             font-size: 0.9rem;
         }
 
+        .click-hint {
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .expandable-content {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 0.88rem;
+            color: #334155;
+            background-color: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .sub-card.open .expandable-content {
+            display: block;
+        }
+
         .service-diagram-box {
             width: 100%;
-            height: 130px;
+            height: 120px;
             background-color: #0b1321;
             border-radius: 6px;
             margin-bottom: 15px;
@@ -277,7 +286,7 @@
         }
 
         @media (max-width: 768px) {
-            :root { --nav-height: 175px; }
+            :root { --nav-height: 170px; }
             .info-label { display: block; width: 100%; margin-bottom: 2px; }
             .profile-card-dark { flex-direction: column; text-align: center; }
         }
@@ -285,7 +294,7 @@
 </head>
 <body>
 
-    <!-- Header & Interactive Navigation Bar -->
+    <!-- Header Navigation -->
     <header>
         <div class="brand-box">
             <div class="badge-icon">TX</div>
@@ -296,286 +305,288 @@
         </div>
 
         <nav>
-            <button id="btn-home" class="active" onclick="switchTab('home')">HOME</button>
-            <button id="btn-about" onclick="switchTab('about')">ABOUT US</button>
-            <button id="btn-services" onclick="switchTab('services')">SERVICES</button>
-            <button id="btn-solutions" onclick="switchTab('solutions')">SOLUTIONS</button>
-            <button id="btn-departments" onclick="switchTab('departments')">DEPARTMENTS</button>
-            <button id="btn-clients" onclick="switchTab('clients')">CLIENTS</button>
-            <button id="btn-careers" onclick="switchTab('careers')">CAREERS</button>
-            <button id="btn-faqs" onclick="switchTab('faqs')">FAQS</button>
-            <button id="btn-contact" onclick="switchTab('contact')">CONTACT</button>
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT US</a>
+            <a href="#services">SERVICES</a>
+            <a href="#solutions">SOLUTIONS</a>
+            <a href="#departments">LOCATIONS & DEPARTMENTS</a>
+            <a href="#clients">CLIENTS</a>
+            <a href="#careers">CAREERS</a>
+            <a href="#faqs">FAQS</a>
+            <a href="#contact">CONTACT</a>
         </nav>
     </header>
 
+    <!-- Vertical Page Container -->
     <main>
 
-        <!-- 1. HOME TAB -->
-        <div id="tab-home" class="tab-section active">
-            <div class="content-card">
-                <h2 class="card-header-title">Enterprise Capabilities & Cloud Engineering</h2>
-                <p style="color: var(--text-muted); margin-top: 8px;">Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
-                
-                <div class="grid-layout">
-                    <div class="sub-card">
-                        <h3>IT Systems & Cloud Infrastructure</h3>
-                        <p>Enterprise Active Directory Domain Services, Azure/Entra ID management, and PowerShell automated deployment.</p>
+        <!-- 1. HOME SECTION -->
+        <div id="home" class="content-card">
+            <h2 class="card-header-title">Enterprise Capabilities & Cloud Engineering</h2>
+            <p style="color: var(--text-muted);">Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
+            
+            <div class="grid-layout">
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>IT Systems & Cloud Infrastructure</h3>
+                    <p>Enterprise Active Directory Domain Services, Azure/Entra ID management, and PowerShell automated deployment.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Overview:</strong> We design, configure, and manage scalable hybrid Active Directory and Microsoft Entra ID deployments. Our automated PowerShell scripting workflows handle user lifecycle management, group policies (GPO), single sign-on (SSO), and conditional access security policies across multi-national organizations.
                     </div>
-                    <div class="sub-card">
-                        <h3>Cybersecurity & Endpoint Defense</h3>
-                        <p>Proactive monitoring, CrowdStrike Falcon integration, Cisco VPNs, and Microsoft Intune Mobile Device Management.</p>
+                </div>
+
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>Cybersecurity & Endpoint Defense</h3>
+                    <p>Proactive monitoring, CrowdStrike Falcon integration, Cisco VPNs, and Microsoft Intune Mobile Device Management.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Overview:</strong> Advanced endpoint protection utilizing CrowdStrike Falcon EDR and Microsoft Intune suite. We enforce automated patch management, zero-trust device compliance, remote wiping capabilities, and secure Cisco AnyConnect encrypted VPN tunnels for remote engineering workforces.
                     </div>
-                    <div class="sub-card">
-                        <h3>Full-Stack Software Engineering</h3>
-                        <p>Scalable web applications engineered using Java, Spring Boot microservices, REST APIs, and React.js interfaces.</p>
+                </div>
+
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>Full-Stack Software Engineering</h3>
+                    <p>Scalable web applications engineered using Java, Spring Boot microservices, REST APIs, and React.js interfaces.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Overview:</strong> Bespoke enterprise web software built on modern microservices. We specialize in robust Java Spring Boot backends, responsive React.js interfaces, secure RESTful API integrations, and high-concurrency database schemas designed for maximum uptime.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 2. ABOUT US TAB -->
-        <div id="tab-about" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">About TM Tech Solutions</h2>
-                <p style="color: var(--text-muted);">TM Tech Solutions is a premiere technology consulting firm delivering mission-critical digital transformation, zero-trust network security, and enterprise infrastructure solutions globally.</p>
-                
-                <div class="profile-card-dark">
-                    <div class="profile-avatar-circle">MT</div>
-                    <div class="profile-details">
-                        <h3>Mohammed Tinku Uddin</h3>
-                        <p>Founder & Chief Executive Officer</p>
-                        <p style="margin-top: 4px; font-size: 0.85rem; color: #cbd5e1;">Bachelor of Engineering in Information Technology</p>
+        <!-- 2. ABOUT US SECTION -->
+        <div id="about" class="content-card">
+            <h2 class="card-header-title">About TM Tech Solutions</h2>
+            <p style="color: var(--text-muted);">TM Tech Solutions is a premiere technology consulting firm delivering mission-critical digital transformation, zero-trust network security, and enterprise infrastructure solutions globally.</p>
+            
+            <div class="profile-card-dark">
+                <div class="profile-avatar-circle">MT</div>
+                <div class="profile-details">
+                    <h3>Mohammed Tinku Uddin</h3>
+                    <p>Founder & Chief Executive Officer</p>
+                    <p style="margin-top: 4px; font-size: 0.85rem; color: #cbd5e1;">Bachelor of Engineering in Information Technology</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 25px; margin-bottom: 10px; color: var(--text-dark);">Industry Recognition & Accreditations</h3>
+            <div class="grid-layout">
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>🏆 Best Tech Solution Provider 2025</h3>
+                    <p>Recognized for excellence in IT Infrastructure management & cloud deployment.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        Awarded for operational excellence in delivering zero-downtime cloud migrations and enterprise network modernization across Middle East and Asian enterprise operations.
                     </div>
                 </div>
-
-                <h3 style="margin-top: 25px; margin-bottom: 10px; color: var(--text-dark);">Industry Recognition & Accreditations</h3>
-                <div class="grid-layout">
-                    <div class="sub-card">
-                        <h3>🏆 Best Tech Solution Provider 2025</h3>
-                        <p>Recognized for excellence in IT Infrastructure management & cloud deployment.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>🛡️ Endpoint Security Excellence</h3>
-                        <p>Certified integration partner for zero-trust endpoint architectures.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>⚡ Top Full-Stack Engineering Firm</h3>
-                        <p>Awarded for enterprise software delivery and microservice reliability.</p>
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>🛡️ Endpoint Security Excellence</h3>
+                    <p>Certified integration partner for zero-trust endpoint architectures.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        Recognized for implementing end-to-end device compliance, CrowdStrike EDR telemetry, and automated malware mitigation across thousands of enterprise endpoints.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. SERVICES TAB WITH TECHNICAL ILLUSTRATIONS -->
-        <div id="tab-services" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">Enterprise Service Offerings</h2>
-                <p style="color: var(--text-muted); margin-bottom: 15px;">Detailed breakdown of our core technical services and enterprise deployment methodologies.</p>
-                
-                <div class="grid-layout">
-                    <div class="sub-card">
-                        <div class="service-diagram-box">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
-                            </svg>
-                        </div>
-                        <h3>Managed IT Systems & Active Directory</h3>
-                        <p>Complete Microsoft 365 licensing automation, Group Policy Objects (GPO), hybrid tenant synchronization, and automated system provisioning.</p>
+        <!-- 3. SERVICES SECTION -->
+        <div id="services" class="content-card">
+            <h2 class="card-header-title">Enterprise Service Catalog</h2>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Click on any service card below to read the comprehensive technical overview.</p>
+            
+            <div class="grid-layout">
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <div class="service-diagram-box">
+                        <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                            <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                        </svg>
                     </div>
-
-                    <div class="sub-card">
-                        <div class="service-diagram-box">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <h3>Cybersecurity Operations & Intune MDM</h3>
-                        <p>Real-time threat isolation, CrowdStrike Falcon setup, DLP compliance enforcement, and encrypted device management across Windows, iOS, and macOS.</p>
+                    <h3>Managed IT Systems & Active Directory</h3>
+                    <p>Complete M365 licensing, Group Policy Objects, and directory synchronization.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Full Scope:</strong> Full tenant configuration, Azure AD Connect setup, hybrid directory synchronization, license cost optimization, automated onboarding scripts, and GPO security hardening.
                     </div>
+                </div>
 
-                    <div class="sub-card">
-                        <div class="service-diagram-box">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-                            </svg>
-                        </div>
-                        <h3>Full-Stack Software Engineering</h3>
-                        <p>Custom microservices built on Java Spring Boot, React.js frontends, and secure RESTful API integrations for high-concurrency environments.</p>
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <div class="service-diagram-box">
+                        <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
                     </div>
-
-                    <div class="sub-card">
-                        <div class="service-diagram-box">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            </svg>
-                        </div>
-                        <h3>Enterprise Network & VPN Routing</h3>
-                        <p>High-availability routing, VPN tunneling, VLAN segmentation, Cisco AnyConnect configurations, and perimeter firewall installations.</p>
+                    <h3>Cybersecurity Operations & Intune MDM</h3>
+                    <p>Real-time threat isolation and Microsoft Intune enrollment.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Full Scope:</strong> Implementation of Microsoft Intune MDM/MAM policies, device conditional access, BitLocker encryption management, DLP policies, and CrowdStrike Falcon EDR deployment.
                     </div>
+                </div>
 
-                    <div class="sub-card">
-                        <div class="service-diagram-box">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-                            </svg>
-                        </div>
-                        <h3>Hardware Sales & Custom Procurement</h3>
-                        <p>Sourcing high-performance desktop components, Intel/AMD workstations, NVIDIA RTX GPUs, DDR5 memory, and modular server racks.</p>
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <div class="service-diagram-box">
+                        <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                        </svg>
                     </div>
-
-                    <div class="sub-card">
-                        <div class="service-diagram-box">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
-                                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-                            </svg>
-                        </div>
-                        <h3>Data Analytics & Power BI Dashboards</h3>
-                        <p>Automated ETL pipeline development, relational database indexing in SQL, and custom interactive Power BI dashboards for executive analytics.</p>
+                    <h3>Full-Stack Software Engineering</h3>
+                    <p>Java Spring Boot microservices, REST APIs, and React interfaces.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Full Scope:</strong> Custom end-to-end web software development, REST API design, single-page application (SPA) engineering in React, database schema indexing, and automated CI/CD pipeline setup.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 4. SOLUTIONS TAB -->
-        <div id="tab-solutions" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">Technical Architecture & Solutions</h2>
-                <div class="grid-layout">
-                    <div class="sub-card">
-                        <h3>Zero-Trust Cloud Migration</h3>
-                        <p>Seamless migration from legacy on-premises Active Directory to cloud-native Microsoft Entra ID architectures with enforced MFA and conditional access.</p>
+        <!-- 4. SOLUTIONS SECTION -->
+        <div id="solutions" class="content-card">
+            <h2 class="card-header-title">Technical Architecture & Solutions</h2>
+            <div class="grid-layout">
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>Zero-Trust Cloud Migration</h3>
+                    <p>Migrating legacy Active Directory to cloud-native Microsoft Entra ID architectures.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        Complete assessment and execution plan for transitioning physical servers and domain controllers into Azure cloud infrastructure with enforced multi-factor authentication (MFA).
                     </div>
-                    <div class="sub-card">
-                        <h3>Automated Endpoint Provisioning</h3>
-                        <p>Deploying Microsoft Intune Autopilot profiles for zero-touch laptop and mobile provisioning across global branch networks.</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>High-Throughput Microservice Architecture</h3>
-                        <p>Engineering distributed Spring Boot applications backed by relational SQL schemas and caching layers for enterprise fault tolerance.</p>
+                </div>
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>Data Analytics & BI Dashboards</h3>
+                    <p>Automated ETL pipelines and SQL reporting in Power BI.</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        Transforming unorganized enterprise operational datasets into real-time interactive Power BI reporting dashboards with optimized relational database queries.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 5. DEPARTMENTS TAB -->
-        <div id="tab-departments" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">Regional Operating Branches & Divisions</h2>
-                <div class="grid-layout">
-                    <div class="sub-card">
-                        <h3>Riyadh Branch, KSA</h3>
-                        <p>King Fahd Road, Business Bay, Riyadh, Kingdom of Saudi Arabia</p>
-                        <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 8px;">Middle East Operations HQ</p>
+        <!-- 5. LOCATIONS & DEPARTMENTS SECTION -->
+        <div id="departments" class="content-card">
+            <h2 class="card-header-title">Locations & Regional Divisions</h2>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Click on any location card below to view detailed branch responsibilities.</p>
+            
+            <div class="grid-layout">
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>Riyadh Branch, KSA</h3>
+                    <p>King Fahd Road, Business Bay, Riyadh, Kingdom of Saudi Arabia</p>
+                    <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 5px;">Middle East Regional HQ</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Branch Overview:</strong> Serves as our primary client relations and executive management hub for Saudi Arabia and Gulf Region IT operations, infrastructure consulting, and executive support services.
                     </div>
-                    <div class="sub-card">
-                        <h3>Hyderabad HQ, India</h3>
-                        <p>Tech Park Tower, Hitec City, Hyderabad, Telangana 500081</p>
-                        <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 8px;">Engineering & R&D Hub</p>
+                </div>
+
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>Hyderabad HQ, India</h3>
+                    <p>Tech Park Tower, Hitec City, Hyderabad, Telangana 500081</p>
+                    <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 5px;">Global Engineering & R&D Center</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Branch Overview:</strong> Houses our software development engineers, cloud systems architects, software quality assurance specialists, and ETL data analytics team.
                     </div>
-                    <div class="sub-card">
-                        <h3>Nirmal Regional Center</h3>
-                        <p>Main Road District Hub, Nirmal, Telangana 504106</p>
-                        <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 8px;">Regional Hardware & Logistics Support</p>
+                </div>
+
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>Nirmal Regional Center</h3>
+                    <p>Main Road District Hub, Nirmal, Telangana 504106</p>
+                    <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 5px;">Hardware & Field Support Hub</p>
+                    <span class="click-hint">Click to read full overview ▼</span>
+                    <div class="expandable-content">
+                        <strong>Branch Overview:</strong> Coordinates computer desktop component procurement, hardware assembly testing, system flashing, and regional field IT infrastructure maintenance.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 6. CLIENTS TAB -->
-        <div id="tab-clients" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">Global Enterprise Clients</h2>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">We are trusted by leading corporations across finance, logistics, cloud computing, and consumer technology.</p>
-                <div class="grid-layout">
-                    <div class="sub-card">
-                        <h3>Global Financial Corp</h3>
-                        <p>Cloud Security & Hybrid Directory Integration</p>
+        <!-- 6. CLIENTS SECTION -->
+        <div id="clients" class="content-card">
+            <h2 class="card-header-title">Global Enterprise Clients</h2>
+            <div class="grid-layout">
+                <div class="sub-card">
+                    <h3>Global Financial Corp</h3>
+                    <p>Cloud Security & Hybrid Directory Integration</p>
+                </div>
+                <div class="sub-card">
+                    <h3>Apex Logistics Hub</h3>
+                    <p>Enterprise Infrastructure & Warehouse Networking</p>
+                </div>
+                <div class="sub-card">
+                    <h3>CyberShield Security</h3>
+                    <p>Zero-Trust Architecture & Endpoint Management</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. CAREERS SECTION -->
+        <div id="careers" class="content-card">
+            <h2 class="card-header-title">Careers at TM Tech Solutions</h2>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Join our engineering and IT systems team in Riyadh or Hyderabad. Send your resume directly to Human Resources.</p>
+            <div class="hr-banner">
+                <strong>Current Openings: Systems Engineer, Cloud Architect, Full-Stack Developer</strong>
+                Direct Resume Submissions: <a href="mailto:mufeeqhr@tm.com" style="color: #854d0e; font-weight: 700;">mufeeqhr@tm.com</a>
+            </div>
+        </div>
+
+        <!-- 8. FAQS SECTION -->
+        <div id="faqs" class="content-card">
+            <h2 class="card-header-title">Frequently Asked Questions</h2>
+            <div style="margin-top: 15px;">
+                <div class="sub-card" onclick="toggleExpand(this)" style="margin-bottom: 15px;">
+                    <h3>What geographic regions does TM Tech Solutions serve?</h3>
+                    <p>We maintain active business operations in KSA and India.</p>
+                    <span class="click-hint">Click to read full answer ▼</span>
+                    <div class="expandable-content">
+                        We provide remote and on-site enterprise IT infrastructure support across Riyadh (Saudi Arabia) as well as Hyderabad and Nirmal (Telangana, India).
                     </div>
-                    <div class="sub-card">
-                        <h3>Apex Logistics Hub</h3>
-                        <p>Enterprise Infrastructure & Warehouse Networking</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>CyberShield Security</h3>
-                        <p>Zero-Trust Architecture & Endpoint Management</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>NextWave Cloud Inc</h3>
-                        <p>Full-Stack Microservices & Analytics Pipeline</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>Gulf Electronics</h3>
-                        <p>Hardware Procurement & Supply Chain Systems</p>
+                </div>
+                <div class="sub-card" onclick="toggleExpand(this)">
+                    <h3>How can we initiate a consulting engagement?</h3>
+                    <p>Direct executive outreach options.</p>
+                    <span class="click-hint">Click to read full answer ▼</span>
+                    <div class="expandable-content">
+                        You can reach out directly via email to tinku@tm.com or contact our corporate HR department at mufeeqhr@tm.com. Executive hotline: 0508893278.
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 7. CAREERS TAB -->
-        <div id="tab-careers" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">Careers at TM Tech Solutions</h2>
-                <p style="color: var(--text-muted); margin-bottom: 15px;">Join our engineering and IT systems team in Riyadh or Hyderabad. Send your resume directly to Human Resources.</p>
-                <div class="hr-banner">
-                    <strong>Current Openings: Systems Engineer, Cloud Architect, Full-Stack Java Developer</strong>
-                    Direct Resume Submissions: <a href="mailto:mufeeqhr@tm.com" style="color: #854d0e; font-weight: 700;">mufeeqhr@tm.com</a>
+        <!-- 9. CONTACT SECTION -->
+        <div id="contact" class="content-card">
+            <h2 class="card-header-title">Corporate Contact & Office Location</h2>
+            
+            <div class="info-panel">
+                <div class="info-item">
+                    <span class="info-label">Human Resources Email:</span>
+                    <span class="info-value"><a href="mailto:mufeeqhr@tm.com">mufeeqhr@tm.com</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Executive Office Email:</span>
+                    <span class="info-value"><a href="mailto:tinku@tm.com">tinku@tm.com</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Executive Hotline:</span>
+                    <span class="info-value">0508893278</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Location:</span>
+                    <span class="info-value">Riyadh, Kingdom of Saudi Arabia</span>
                 </div>
             </div>
-        </div>
 
-        <!-- 8. FAQS TAB -->
-        <div id="tab-faqs" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">Frequently Asked Questions</h2>
-                <div style="margin-top: 15px;">
-                    <div class="sub-card" style="margin-bottom: 15px;">
-                        <h3>What geographic regions does TM Tech Solutions serve?</h3>
-                        <p>We maintain active business operations and on-site support teams across the Kingdom of Saudi Arabia (Riyadh) and India (Hyderabad & Nirmal).</p>
-                    </div>
-                    <div class="sub-card">
-                        <h3>How can we initiate a consulting engagement?</h3>
-                        <p>Contact our Executive office at tinku@tm.com or reach out via our direct executive line at 0508893278.</p>
-                    </div>
-                </div>
+            <div class="hr-banner">
+                <strong>Human Resources Contact</strong>
+                HR Direct Email: <a href="mailto:mufeeqhr@tm.com" style="color: #854d0e; font-weight: 700;">mufeeqhr@tm.com</a>
             </div>
-        </div>
 
-        <!-- 9. CONTACT TAB -->
-        <div id="tab-contact" class="tab-section">
-            <div class="content-card">
-                <h2 class="card-header-title">Corporate Contact & Office Location</h2>
-                
-                <div class="info-panel">
-                    <div class="info-item">
-                        <span class="info-label">Human Resources Email:</span>
-                        <span class="info-value"><a href="mailto:mufeeqhr@tm.com">mufeeqhr@tm.com</a></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Executive Office Email:</span>
-                        <span class="info-value"><a href="mailto:tinku@tm.com">tinku@tm.com</a></span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Executive Hotline:</span>
-                        <span class="info-value">0508893278</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Location:</span>
-                        <span class="info-value">Riyadh, Kingdom of Saudi Arabia</span>
-                    </div>
-                </div>
-
-                <div class="hr-banner">
-                    <strong>Human Resources Contact</strong>
-                    HR Direct Email: <a href="mailto:mufeeqhr@tm.com" style="color: #854d0e; font-weight: 700;">mufeeqhr@tm.com</a>
-                </div>
-
-                <div class="profile-card-dark">
-                    <div class="profile-avatar-circle">MT</div>
-                    <div class="profile-details">
-                        <h3>Mohammed Tinku Uddin</h3>
-                        <p>Founder & Chief Executive Officer</p>
-                        <p style="margin-top: 4px; font-size: 0.85rem; color: #cbd5e1;">Bachelor of Engineering in Information Technology</p>
-                    </div>
+            <div class="profile-card-dark">
+                <div class="profile-avatar-circle">MT</div>
+                <div class="profile-details">
+                    <h3>Mohammed Tinku Uddin</h3>
+                    <p>Founder & Chief Executive Officer</p>
+                    <p style="margin-top: 4px; font-size: 0.85rem; color: #cbd5e1;">Bachelor of Engineering in Information Technology</p>
                 </div>
             </div>
         </div>
@@ -586,31 +597,18 @@
         © 2026 TM Tech Solutions. All Rights Reserved. | Executive Inquiries: tinku@tm.com
     </footer>
 
-    <!-- Interactive JavaScript Tab Switcher -->
+    <!-- Toggle Expand JavaScript -->
     <script>
-        function switchTab(tabId) {
-            // Hide all tabs
-            const sections = document.querySelectorAll('.tab-section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            // Deactivate all nav buttons
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Activate selected tab content
-            const activeTab = document.getElementById('tab-' + tabId);
-            if (activeTab) {
-                activeTab.classList.add('active');
+        function toggleExpand(cardElement) {
+            cardElement.classList.toggle('open');
+            const hint = cardElement.querySelector('.click-hint');
+            if (hint) {
+                if (cardElement.classList.contains('open')) {
+                    hint.textContent = 'Click to close ▲';
+                } else {
+                    hint.textContent = 'Click to read full overview ▼';
+                }
             }
-
-            // Highlight active button
-            const activeBtn = document.getElementById('btn-' + tabId);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
-
-            // Smooth scroll up to top of content
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
