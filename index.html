@@ -6,22 +6,21 @@
     <title>TM Tech Solutions | Enterprise IT & Infrastructure Services</title>
     <style>
         :root {
-            --bg-dark: #0a111e;
-            --bg-header: #070c16;
-            --card-white: #ffffff;
+            --bg-dark: #070c14;
+            --bg-card: #ffffff;
             --accent-gold: #c5a059;
             --accent-gold-bright: #d4af37;
-            --text-dark: #1f2937;
-            --text-muted: #4b5563;
-            --text-light: #f3f4f6;
-            --border-light: #e5e7eb;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #f8fafc;
+            --border-color: #e2e8f0;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
@@ -30,15 +29,15 @@
             line-height: 1.6;
         }
 
-        /* Top Header & Logo */
+        /* Header Bar */
         header {
-            background-color: var(--bg-header);
+            background-color: #0b1321;
             border-bottom: 2px solid var(--accent-gold);
-            padding: 20px 5%;
+            padding: 25px 5% 15px 5%;
             text-align: center;
         }
 
-        .header-brand {
+        .brand-box {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -46,180 +45,210 @@
             margin-bottom: 15px;
         }
 
-        .logo-badge {
-            width: 48px;
-            height: 48px;
+        .badge-icon {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 2px solid var(--accent-gold);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent-gold);
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 800;
+            font-size: 1.3rem;
         }
 
-        .brand-title h1 {
-            color: var(--text-light);
-            font-size: 1.8rem;
-            letter-spacing: 0.5px;
+        .brand-text h1 {
+            color: #ffffff;
+            font-size: 1.9rem;
+            font-weight: 700;
         }
 
-        .brand-title p {
+        .brand-text p {
             color: var(--accent-gold);
             font-size: 0.85rem;
             letter-spacing: 0.5px;
         }
 
-        /* Navigation Menu */
+        /* Navigation Bar */
         nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 18px;
             flex-wrap: wrap;
-            padding-top: 10px;
+            margin-top: 15px;
         }
 
         nav a {
-            color: var(--text-light);
+            color: #cbd5e1;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 5px 10px;
-            transition: color 0.2s;
+            letter-spacing: 0.8px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
         }
 
         nav a:hover {
             color: var(--accent-gold-bright);
+            background-color: rgba(197, 160, 89, 0.1);
         }
 
-        /* Main White Card Container */
+        /* Container Layout */
         main {
-            max-width: 1000px;
+            max-width: 950px;
             margin: 30px auto;
-            padding: 0 20px 40px 20px;
+            padding: 0 20px 50px 20px;
         }
 
-        .section-card {
-            background-color: var(--card-white);
-            border-radius: 10px;
+        .content-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
             padding: 35px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .section-title {
+        .card-header-title {
             font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
             border-bottom: 2px solid var(--accent-gold);
-            padding-bottom: 8px;
         }
 
-        /* Info Box Layouts */
-        .info-box {
+        /* Detail Boxes */
+        .info-panel {
             background-color: #f8fafc;
-            border: 1px solid var(--border-light);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
+            padding: 22px;
+            margin-top: 15px;
         }
 
-        .info-row {
+        .info-item {
             margin-bottom: 12px;
             font-size: 0.95rem;
         }
 
-        .info-row strong {
-            color: var(--text-dark);
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
             display: inline-block;
-            width: 200px;
+            width: 210px;
+            font-weight: 700;
+            color: #334155;
         }
 
-        .info-row a {
+        .info-value a {
             color: #2563eb;
-            text-decoration: none;
+            text-decoration: underline;
+            font-weight: 600;
         }
 
-        .highlight-box {
+        .hr-banner {
             background-color: #fefce8;
             border: 1px solid #fef08a;
-            border-radius: 6px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        .highlight-box strong {
-            color: #854d0e;
-        }
-
-        /* Grid Cards inside Sections */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .card-item {
-            border: 1px solid var(--border-light);
             border-radius: 8px;
-            padding: 20px;
-            background-color: #ffffff;
+            padding: 18px;
+            margin-top: 20px;
         }
 
-        .card-item h3 {
-            color: var(--text-dark);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-
-        .card-item p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .hr-banner strong {
+            color: #854d0e;
+            display: block;
+            margin-bottom: 5px;
         }
 
         /* Profile Banner */
-        .profile-banner {
-            background-color: var(--bg-dark);
+        .profile-card-dark {
+            background-color: #0b1321;
             color: var(--text-light);
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 25px;
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
             align-items: center;
             gap: 20px;
+            border: 1px solid #1e293b;
         }
 
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
+        .profile-avatar-circle {
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             background-color: var(--accent-gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: var(--bg-dark);
-            font-weight: bold;
+            font-size: 1.8rem;
+            color: #0b1321;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .profile-details h3 {
+            color: var(--accent-gold-bright);
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .profile-details p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Grid Item Layouts */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sub-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .sub-card h3 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .sub-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         footer {
             text-align: center;
-            color: #9ca3af;
+            color: #64748b;
             font-size: 0.85rem;
-            padding: 20px;
-            border-top: 1px solid #1f2937;
+            padding: 25px;
+            border-top: 1px solid #1e293b;
+        }
+
+        @media (max-width: 600px) {
+            .info-label { display: block; width: 100%; margin-bottom: 2px; }
+            .profile-card-dark { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header Section -->
     <header>
-        <div class="header-brand">
-            <div class="logo-badge">TM</div>
-            <div class="brand-title">
+        <div class="brand-box">
+            <div class="badge-icon">TX</div>
+            <div class="brand-text">
                 <h1>TM Tech Solutions</h1>
                 <p>Enterprise IT Consulting & Infrastructure Services</p>
             </div>
@@ -240,102 +269,118 @@
 
     <main>
 
-        <!-- CONTACT SECTION -->
-        <div id="contact" class="section-card">
-            <h2 class="section-title">Corporate Contact & Office Location</h2>
+        <!-- CONTACT & CORPORATE OFFICE LOCATION -->
+        <div id="contact" class="content-card">
+            <h2 class="card-header-title">Corporate Contact & Office Location</h2>
             
-            <div class="info-box">
-                <div class="info-row">
-                    <strong>Human Resources Email:</strong>
-                    <a href="mailto:mufeeqhr@tm.com">mufeeqhr@tm.com</a>
+            <div class="info-panel">
+                <div class="info-item">
+                    <span class="info-label">Human Resources Email:</span>
+                    <span class="info-value"><a href="mailto:mufeeqhr@tm.com">mufeeqhr@tm.com</a></span>
                 </div>
-                <div class="info-row">
-                    <strong>Executive Office Email:</strong>
-                    <a href="mailto:tinku@tm.com">tinku@tm.com</a>
+                <div class="info-item">
+                    <span class="info-label">Executive Office Email:</span>
+                    <span class="info-value"><a href="mailto:tinku@gulforigin.com">tinku@gulforigin.com</a> / <a href="mailto:tinku@tm.com">tinku@tm.com</a></span>
                 </div>
-                <div class="info-row">
-                    <strong>Executive Hotline:</strong>
-                    <span>0508893278</span>
+                <div class="info-item">
+                    <span class="info-label">Executive Hotline:</span>
+                    <span class="info-value">0508893278</span>
                 </div>
-                <div class="info-row">
-                    <strong>Location:</strong>
-                    <span>Riyadh, Kingdom of Saudi Arabia</span>
+                <div class="info-item">
+                    <span class="info-label">Location:</span>
+                    <span class="info-value">Riyadh, Kingdom of Saudi Arabia</span>
                 </div>
             </div>
 
-            <div class="highlight-box">
-                <strong>Human Resources Contact</strong><br>
-                HR Direct Email: <a href="mailto:mufeeqhr@tm.com">mufeeqhr@tm.com</a>
+            <div class="hr-banner">
+                <strong>Human Resources Contact</strong>
+                HR Direct Email: <a href="mailto:mufeeqhr@tm.com" style="color: #854d0e; font-weight: 700;">mufeeqhr@tm.com</a>
             </div>
 
-            <div class="profile-banner">
-                <div class="profile-avatar">MT</div>
-                <div>
-                    <h3 style="color: var(--accent-gold);">Mohammed Tinku Uddin</h3>
-                    <p style="font-size: 0.9rem; color: #d1d5db;">Founder & Chief Executive Officer</p>
-                    <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 5px;">Bachelor of Engineering in IT | St. Martin's Engineering College</p>
+            <div class="profile-card-dark">
+                <div class="profile-avatar-circle">MT</div>
+                <div class="profile-details">
+                    <h3>Mohammed Tinku Uddin</h3>
+                    <p>Founder & Chief Executive Officer</p>
+                    <p style="margin-top: 4px; font-size: 0.85rem; color: #cbd5e1;">Bachelor of Engineering in IT | St. Martin's Engineering College</p>
                 </div>
             </div>
         </div>
 
         <!-- HOME SECTION -->
-        <div id="home" class="section-card">
-            <h2 class="section-title">Enterprise Capabilities</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
+        <div id="home" class="content-card">
+            <h2 class="card-header-title">Core Capabilities & Cloud Engineering</h2>
+            <p style="color: var(--text-muted); margin-top: 8px;">Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
             
-            <div class="grid-2">
-                <div class="card-item">
-                    <h3>IT Systems & Cloud</h3>
+            <div class="grid-layout">
+                <div class="sub-card">
+                    <h3>IT Systems & Cloud Infrastructure</h3>
                     <p>Enterprise Active Directory Domain Services, Azure/Entra ID management, and PowerShell automated deployment.</p>
                 </div>
-                <div class="card-item">
-                    <h3>Cybersecurity & Endpoint</h3>
+                <div class="sub-card">
+                    <h3>Cybersecurity & Endpoint Defense</h3>
                     <p>Proactive monitoring, CrowdStrike Falcon integration, Cisco VPNs, and Microsoft Intune Mobile Device Management.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>Full-Stack Software Engineering</h3>
+                    <p>Scalable web applications engineered using Java, Spring Boot microservices, REST APIs, and React.js interfaces.</p>
                 </div>
             </div>
         </div>
 
-        <!-- SERVICES & SOLUTIONS -->
-        <div id="services" class="section-card">
-            <h2 class="section-title">Services & Solutions</h2>
-            <div class="grid-2">
-                <div class="card-item">
+        <!-- SERVICES & SOLUTIONS SECTION -->
+        <div id="services" class="content-card">
+            <h2 class="card-header-title">Services & Solutions</h2>
+            <div class="grid-layout">
+                <div class="sub-card">
                     <h3>Enterprise Network Design</h3>
                     <p>High-availability routing, VPN tunneling, VLAN segmentation, and perimeter firewall installation.</p>
                 </div>
-                <div class="card-item">
+                <div class="sub-card">
                     <h3>Hardware Sales & Procurement</h3>
                     <p>Sourcing high-performance desktop components, workstations, servers, and multi-display rigs.</p>
                 </div>
+                <div class="sub-card">
+                    <h3>Data Analytics & BI Dashboards</h3>
+                    <p>Automated ETL pipeline development, relational database indexing, and custom Power BI reporting.</p>
+                </div>
             </div>
         </div>
 
-        <!-- AWARDS & ACCREDITATIONS -->
-        <div id="about" class="section-card">
-            <h2 class="section-title">Awards & Industry Accreditations</h2>
-            <div class="grid-2">
-                <div class="card-item">
+        <!-- AWARDS & RECOGNITION -->
+        <div id="about" class="content-card">
+            <h2 class="card-header-title">Awards & Accreditations</h2>
+            <div class="grid-layout">
+                <div class="sub-card">
                     <h3>🏆 Best Tech Solution Provider 2025</h3>
                     <p>Recognized for excellence in IT Infrastructure management & cloud deployment.</p>
                 </div>
-                <div class="card-item">
+                <div class="sub-card">
                     <h3>🛡️ Endpoint Security Excellence</h3>
                     <p>Certified integration partner for zero-trust endpoint architectures.</p>
+                </div>
+                <div class="sub-card">
+                    <h3>⚡ Top Full-Stack Engineering Firm</h3>
+                    <p>Awarded for enterprise software delivery and microservice reliability.</p>
                 </div>
             </div>
         </div>
 
-        <!-- REGIONAL BRANCHES -->
-        <div id="departments" class="section-card">
-            <h2 class="section-title">Regional Branch Locations</h2>
-            <div class="grid-2">
-                <div class="card-item">
+        <!-- REGIONAL LOCATIONS -->
+        <div id="departments" class="content-card">
+            <h2 class="card-header-title">Regional Office Locations</h2>
+            <div class="grid-layout">
+                <div class="sub-card">
                     <h3>Riyadh Branch, KSA</h3>
                     <p>King Fahd Road, Business Bay, Riyadh, Kingdom of Saudi Arabia</p>
                 </div>
-                <div class="card-item">
+                <div class="sub-card">
                     <h3>Hyderabad HQ, India</h3>
                     <p>Tech Park Tower, Hitec City, Hyderabad, Telangana 500081</p>
+                </div>
+                <div class="sub-card">
+                    <h3>Nirmal Regional Center</h3>
+                    <p>Main Road District Hub, Nirmal, Telangana 504106</p>
                 </div>
             </div>
         </div>
@@ -343,7 +388,7 @@
     </main>
 
     <footer>
-        © 2026 TM Tech Solutions. All Rights Reserved. | Corporate Contact: tinku@tm.com
+        © 2026 TM Tech Solutions. All Rights Reserved. | Executive Inquiries: tinku@tm.com
     </footer>
 
 </body>
