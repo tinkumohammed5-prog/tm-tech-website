@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* Navigation Header */
+        /* Header Navigation */
         header {
             position: fixed;
             top: 0;
@@ -52,7 +53,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            cursor: pointer;
         }
 
         .logo-crest {
@@ -89,7 +89,7 @@
             background-color: rgba(212, 175, 55, 0.1);
         }
 
-        /* Main Container */
+        /* Main Section Styling */
         main {
             margin-top: var(--nav-height);
             padding: 40px 5%;
@@ -99,7 +99,6 @@
             margin-bottom: 60px;
         }
 
-        /* Hero Banner */
         .hero {
             text-align: center;
             padding: 60px 20px;
@@ -121,7 +120,7 @@
             margin: 0 auto;
         }
 
-        /* Continuous Motion Client Ticker */
+        /* Motion Client Ticker */
         .ticker-container {
             overflow: hidden;
             white-space: nowrap;
@@ -156,7 +155,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Cards & Grid Layout */
+        /* Grid & Cards */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -210,7 +209,7 @@
             margin-top: 15px;
         }
 
-        /* About & Profile Section */
+        /* Founder Profile */
         .profile-container {
             display: grid;
             grid-template-columns: 280px 1fr;
@@ -251,7 +250,7 @@
             font-size: 1.1rem;
         }
 
-        /* Awards Section */
+        /* Awards */
         .awards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -272,7 +271,7 @@
             margin-bottom: 5px;
         }
 
-        /* Contact Section */
+        /* Contact Details */
         .contact-box {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -294,7 +293,6 @@
             font-weight: 600;
         }
 
-        /* Footer */
         footer {
             height: 80px;
             border-top: 1px solid var(--border-color);
@@ -317,7 +315,6 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="logo-container">
             <svg class="logo-crest" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -342,17 +339,15 @@
         </nav>
     </header>
 
-    <!-- Main Content Area -->
     <main>
 
-        <!-- SECTION: HOME -->
+        <!-- HOME -->
         <section id="sec-home">
             <div class="hero">
                 <h1>Next-Gen Enterprise Infrastructure & Software</h1>
                 <p>Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
             </div>
 
-            <!-- Client Motion Ticker -->
             <div class="ticker-container">
                 <div class="ticker-track">
                     <div class="ticker-item"><span>◆</span> Global Financial Corp</div>
@@ -368,7 +363,6 @@
                 </div>
             </div>
 
-            <!-- Core Pillars -->
             <h2 style="margin-bottom: 20px; color: var(--accent-gold-light);">Core Capabilities</h2>
             <div class="grid-3">
                 <div class="card">
@@ -412,7 +406,7 @@
             </div>
         </section>
 
-        <!-- SECTION: SERVICES -->
+        <!-- SERVICES -->
         <section id="sec-services">
             <h2 style="margin-bottom: 25px; color: var(--accent-gold-light);">Our Service Catalog</h2>
             <div class="grid-3">
@@ -457,7 +451,7 @@
             </div>
         </section>
 
-        <!-- SECTION: ABOUT & PROFILE -->
+        <!-- ABOUT & PROFILE -->
         <section id="sec-about">
             <h2 style="margin-bottom: 25px; color: var(--accent-gold-light);">Leadership & Corporate Profile</h2>
             
@@ -468,11 +462,11 @@
                 <div class="profile-info">
                     <h2>Mohammed Tinku</h2>
                     <div class="title">Founder & Chief Executive Officer</div>
-                    <p>Mohammed Tinku holds a Bachelor of Engineering degree in Information Technology from St. Martin's Engineering College in Hyderabad, India. With extensive expertise in full-stack software development, cloud systems administration, endpoint security infrastructure, and database analytics, he founded TM Tech Solutions to deliver enterprise-class digital engineering services globally.</p>
+                    <p>Mohammed Tinku holds a Bachelor of Engineering degree in Information Technology from St. Martin's Engineering College in Hyderabad, India[cite: 1.2, 1.3, 1.4]. With extensive expertise in full-stack software development, cloud systems administration, endpoint security infrastructure, and database analytics, he founded TM Tech Solutions to deliver enterprise-class digital engineering services globally.</p>
                 </div>
             </div>
 
-            <!-- Awards & Industry Recognition -->
+            <!-- Awards -->
             <h3 style="margin-bottom: 15px; color: var(--accent-gold-light);">Awards & Industry Accreditations</h3>
             <div class="awards-grid">
                 <div class="award-badge">
@@ -490,7 +484,7 @@
             </div>
         </section>
 
-        <!-- SECTION: CONTACT & BRANCH LOCATOR -->
+        <!-- CONTACT -->
         <section id="sec-contact">
             <h2 style="margin-bottom: 25px; color: var(--accent-gold-light);">Contact Us & Branch Locations</h2>
             
@@ -535,7 +529,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer>
         <div>© 2026 TM Tech Solutions. All Rights Reserved.</div>
         <div>Contact HR: <a href="mailto:mufeeqhr@tm.com" style="color: var(--accent-gold); text-decoration: none;">mufeeqhr@tm.com</a></div>
