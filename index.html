@@ -1,307 +1,550 @@
-
-mkdir -p ~/Desktop/tm_tech_website
-
-cat << 'EOF' > ~/Desktop/tm_tech_website/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TM Tech Solutions | Enterprise IT Infrastructure & Consulting</title>
-  <style>
-    :root {
-      --primary: #0a192f;
-      --secondary: #172a45;
-      --accent: #d4af37;
-      --accent-hover: #b38728;
-      --light-bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #334155;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TM Tech Solutions | Enterprise IT & Infrastructure Services</title>
+    <style>
+        :root {
+            --bg-dark: #070c14;
+            --bg-header: #0b1321;
+            --bg-card: #ffffff;
+            --accent-gold: #c5a059;
+            --accent-gold-bright: #d4af37;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --nav-height: 120px;
+        }
 
-    * { box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: var(--light-bg); color: var(--text-main); line-height: 1.6; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
 
-    /* Header & Branding */
-    header { background: linear-gradient(135deg, #020c1b, var(--primary)); color: white; padding: 20px; border-bottom: 3px solid var(--accent); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
-    .header-container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
-    .brand { display: flex; align-items: center; gap: 15px; }
-    .logo-svg { width: 50px; height: 50px; filter: drop-shadow(0px 2px 6px rgba(212, 175, 55, 0.4)); }
-    .brand-text h1 { margin: 0; font-size: 1.8em; color: #fff; font-weight: 700; letter-spacing: 0.5px; }
-    .brand-text p { margin: 2px 0 0 0; font-size: 0.85em; color: #f3e5ab; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
 
-    /* Navigation Tabs */
-    nav { display: flex; gap: 6px; flex-wrap: wrap; }
-    nav button { background: transparent; border: 1px solid rgba(212, 175, 55, 0.3); color: #cbd5e1; padding: 8px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-size: 0.85em; }
-    nav button:hover, nav button.active { background: var(--accent); color: var(--primary); border-color: var(--accent); font-weight: 700; }
+        /* Fixed Top Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-header);
+            border-bottom: 2px solid var(--accent-gold);
+            padding: 15px 5%;
+            text-align: center;
+            z-index: 1000;
+        }
 
-    /* Main Container & Layout */
-    .main-container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
-    
-    /* Hero Banner */
-    .hero { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border-radius: 12px; padding: 40px 30px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-left: 6px solid var(--accent); }
-    .hero h2 { margin-top: 0; font-size: 2em; color: var(--accent); }
-    .hero p { font-size: 1.05em; color: #e2e8f0; max-width: 850px; }
-    .hero-btn { display: inline-block; background: var(--accent); color: var(--primary); padding: 10px 22px; border-radius: 6px; text-decoration: none; font-weight: 700; margin-top: 15px; transition: background 0.2s; }
-    .hero-btn:hover { background: var(--accent-hover); }
+        .brand-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
 
-    /* MOTION CLIENTS MARQUEE / SLIDER */
-    .clients-motion-section { margin: 35px 0; background: #ffffff; padding: 25px 20px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-    .clients-title { text-align: center; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 20px; font-weight: 700; }
-    .marquee-wrapper { overflow: hidden; white-space: nowrap; position: relative; width: 100%; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
-    .marquee-track { display: inline-flex; gap: 40px; animation: scrollMarquee 22s linear infinite; }
-    .marquee-wrapper:hover .marquee-track { animation-play-state: paused; }
-    .client-badge { display: inline-flex; align-items: center; gap: 10px; background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px 20px; border-radius: 30px; font-weight: 600; color: var(--primary); font-size: 0.9em; transition: all 0.2s; }
-    .client-badge:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-    .client-badge span.dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; }
+        .badge-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
 
-    @keyframes scrollMarquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+        .brand-text h1 {
+            color: #ffffff;
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
 
-    /* Section Display Control */
-    .page-section { display: none; }
-    .page-section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .brand-text p {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
 
-    /* Vertical Cards & Grids */
-    .section-title { font-size: 1.6em; color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 8px; margin-top: 0; margin-bottom: 25px; }
-    .vertical-stack { display: flex; flex-direction: column; gap: 20px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    
-    /* Interactive Card Base */
-    .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 25px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-    .card.interactive { cursor: pointer; position: relative; }
-    .card.interactive:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,0,0,0.06); border-left: 4px solid var(--accent); }
-    .card h3 { margin-top: 0; color: var(--primary); font-size: 1.25em; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .card-tag { font-size: 0.75em; background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: 12px; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+        /* Interactive Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
 
-    .click-hint { display: inline-block; font-size: 0.8em; color: var(--accent-hover); font-weight: bold; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-    
-    .card-details { display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--border-color); color: #334155; animation: slideDown 0.25s ease-out; }
-    .card.open .card-details { display: block; }
-    .card.open { border-left: 4px solid var(--accent); background: #fdfdfd; }
-    .card.open .click-hint { color: #dc2626; }
-    
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        nav button {
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-    .detail-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-top: 12px; }
-    .detail-box h5 { margin: 0 0 8px 0; color: var(--primary); font-size: 0.95em; }
-    .detail-box ul { margin: 0; padding-left: 20px; font-size: 0.9em; }
+        nav button:hover, nav button.active {
+            color: var(--accent-gold-bright);
+            background-color: rgba(197, 160, 89, 0.15);
+        }
 
-    .service-banner { width: 100%; max-height: 220px; border-radius: 8px; overflow: hidden; margin: 15px 0; border: 1px solid var(--border-color); background: #0a192f; display: flex; align-items: center; justify-content: center; }
-    .service-banner svg { width: 100%; height: 180px; }
-    .img-caption { font-size: 0.8em; color: var(--text-muted); text-align: center; font-style: italic; margin-top: -8px; margin-bottom: 12px; }
+        /* Main Content Container */
+        main {
+            max-width: 950px;
+            margin: var(--nav-height) auto 30px auto;
+            padding: 40px 20px 50px 20px;
+        }
 
-    .founder-card { background: linear-gradient(145deg, #0a192f, #020c1b); color: white; border: 1px solid var(--accent); border-radius: 12px; padding: 30px; margin-top: 30px; display: flex; gap: 25px; align-items: center; flex-wrap: wrap; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-    .founder-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); background: #020c1b; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); }
-    .founder-info h3 { margin: 0; font-size: 1.5em; color: #fff; }
-    .founder-info .role { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.85em; margin: 4px 0 12px 0; }
-    .founder-info p { margin: 4px 0; font-size: 0.95em; color: #cbd5e1; }
+        .tab-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
 
-    footer { background: #020c1b; color: #94a3b8; text-align: center; padding: 25px; margin-top: 50px; font-size: 0.9em; border-top: 1px solid rgba(212,175,55,0.2); }
-    footer a { color: var(--accent); text-decoration: none; }
-  </style>
+        .tab-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        /* Detail Boxes */
+        .info-panel {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 22px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            display: inline-block;
+            width: 210px;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .info-value a {
+            color: #2563eb;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .hr-banner {
+            background-color: #fefce8;
+            border: 1px solid #fef08a;
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        .hr-banner strong {
+            color: #854d0e;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Profile Card */
+        .profile-card-dark {
+            background-color: #0b1321;
+            color: var(--text-light);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid #1e293b;
+        }
+
+        .profile-avatar-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: #0b1321;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .profile-details h3 {
+            color: var(--accent-gold-bright);
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .profile-details p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Grid Item Layouts */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sub-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .sub-card h3 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .sub-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            padding: 25px;
+            border-top: 1px solid #1e293b;
+        }
+
+        @media (max-width: 768px) {
+            :root { --nav-height: 170px; }
+            .info-label { display: block; width: 100%; margin-bottom: 2px; }
+            .profile-card-dark { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-container">
-      <div class="brand">
-        <svg class="logo-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="90" stroke="url(#goldGrad)" stroke-width="6"/>
-          <circle cx="100" cy="100" r="80" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="6 4"/>
-          <path d="M50 65 H150 M100 65 V145" stroke="url(#goldGrad)" stroke-width="14" stroke-linecap="round"/>
-          <path d="M125 65 L160 145 M160 65 L125 145" stroke="url(#goldGrad)" stroke-width="12" stroke-linecap="round"/>
-          <defs>
-            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#BF953F"/><stop offset="25%" stop-color="#FCF6BA"/><stop offset="50%" stop-color="#B38728"/><stop offset="75%" stop-color="#FBF5B7"/><stop offset="100%" stop-color="#AA771C"/>
-            </linearGradient>
-          </defs>
-        </svg>
-        <div class="brand-text">
-          <h1>TM Tech Solutions</h1>
-          <p>Enterprise IT Infrastructure & Digital Consulting</p>
-        </div>
-      </div>
-      <nav>
-        <button id="btn-home" onclick="showSection('home')" class="active">Home</button>
-        <button id="btn-about" onclick="showSection('about')">About & Profile</button>
-        <button id="btn-departments" onclick="showSection('departments')">Departments</button>
-        <button id="btn-services" onclick="showSection('services')">Services</button>
-      </nav>
-    </div>
-  </header>
-
-  <div class="main-container">
-
-    <!-- HOME SECTION -->
-    <div id="home" class="page-section active">
-      <div class="hero">
-        <h2>Enterprise IT Infrastructure, Cyber Defense & Software Engineering</h2>
-        <p>TM Tech Solutions delivers high-availability systems architecture, cybersecurity endpoint protection, enterprise cloud integration, and custom full-stack software development across Saudi Arabia and the GCC.</p>
-        <a href="javascript:void(0)" onclick="showSection('about')" class="hero-btn">Explore Company Profile &rarr;</a>
-      </div>
-
-      <div class="clients-motion-section">
-        <div class="clients-title">Trusted By & Collaborating With Enterprise Partners</div>
-        <div class="marquee-wrapper">
-          <div class="marquee-track">
-            <div class="client-badge"><span class="dot"></span> Saudi Aramco Contracting Network</div>
-            <div class="client-badge"><span class="dot"></span> Gulf Origin Enterprise Group</div>
-            <div class="client-badge"><span class="dot"></span> Microsoft Cloud Ecosystem</div>
-            <div class="client-badge"><span class="dot"></span> CrowdStrike Security Alliance</div>
-            <div class="client-badge"><span class="dot"></span> Cisco Enterprise Systems</div>
-            <div class="client-badge"><span class="dot"></span> Jubail Industrial Zone Sector</div>
-            <div class="client-badge"><span class="dot"></span> Riyadh Commercial District</div>
-            <div class="client-badge"><span class="dot"></span> Telengana Tech Park Offshores</div>
-          </div>
-        </div>
-      </div>
-
-      <h2 class="section-title">Core Competencies</h2>
-      <div class="vertical-stack">
-        <div class="card interactive" onclick="toggleCard(this)">
-          <h3>Systems & Active Directory Management <span class="card-tag">Infrastructure</span></h3>
-          <p>Microsoft Entra ID (Azure AD), AD DS, Group Policy Objects (GPO), PowerShell scripting, and M365 tenant management.</p>
-          <span class="click-hint">▼ Click for full details & specs</span>
-          <div class="card-details">
-            <p>We configure resilient enterprise domain controller environments ensuring zero downtime for mission-critical services.</p>
-            <div class="detail-box">
-              <h5>Technical Implementation Scope:</h5>
-              <ul>
-                <li>Active Directory Domain Services (AD DS) design and OU policy structure.</li>
-                <li>Hybrid identity synchronization via Microsoft Entra Connect.</li>
-                <li>Granular Group Policy Object (GPO) deployment for system hardening.</li>
-                <li>Automated M365 user lifecycle provisioning via PowerShell scripting.</li>
-              </ul>
+    <!-- Header & Interactive Navigation Bar -->
+    <header>
+        <div class="brand-box">
+            <div class="badge-icon">TX</div>
+            <div class="brand-text">
+                <h1>TM Tech Solutions</h1>
+                <p>Enterprise IT Consulting & Infrastructure Services</p>
             </div>
-          </div>
         </div>
 
-        <div class="card interactive" onclick="toggleCard(this)">
-          <h3>Cybersecurity & Endpoint Control <span class="card-tag">Security</span></h3>
-          <p>CrowdStrike Falcon endpoint security, Microsoft Intune MDM compliance, Cisco AnyConnect VPN configurations, and network isolation.</p>
-          <span class="click-hint">▼ Click for full details & specs</span>
-          <div class="card-details">
-            <p>Our security posture enforces Zero-Trust architecture across all corporate mobile and desktop endpoints.</p>
-            <div class="detail-box">
-              <h5>Security Workflows:</h5>
-              <ul>
-                <li>CrowdStrike Falcon Sensor mass deployment and threat telemetry integration.</li>
-                <li>Microsoft Intune Mobile Device Management (MDM) conditional access policies.</li>
-                <li>Cisco AnyConnect VPN setup with multi-factor authentication (MFA) enforcement.</li>
-              </ul>
+        <nav>
+            <button id="btn-home" class="active" onclick="switchTab('home')">HOME</button>
+            <button id="btn-about" onclick="switchTab('about')">ABOUT US</button>
+            <button id="btn-services" onclick="switchTab('services')">SERVICES</button>
+            <button id="btn-solutions" onclick="switchTab('solutions')">SOLUTIONS</button>
+            <button id="btn-departments" onclick="switchTab('departments')">DEPARTMENTS</button>
+            <button id="btn-clients" onclick="switchTab('clients')">CLIENTS</button>
+            <button id="btn-careers" onclick="switchTab('careers')">CAREERS</button>
+            <button id="btn-faqs" onclick="switchTab('faqs')">FAQS</button>
+            <button id="btn-contact" onclick="switchTab('contact')">CONTACT</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- 1. HOME TAB -->
+        <div id="tab-home" class="tab-section active">
+            <div class="content-card">
+                <h2 class="card-header-title">Enterprise Capabilities & Cloud Engineering</h2>
+                <p style="color: var(--text-muted); margin-top: 8px;">Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
+                
+                <div class="grid-layout">
+                    <div class="sub-card">
+                        <h3>IT Systems & Cloud Infrastructure</h3>
+                        <p>Enterprise Active Directory Domain Services, Azure/Entra ID management, and PowerShell automated deployment.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Cybersecurity & Endpoint Defense</h3>
+                        <p>Proactive monitoring, CrowdStrike Falcon integration, Cisco VPNs, and Microsoft Intune Mobile Device Management.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Full-Stack Software Engineering</h3>
+                        <p>Scalable web applications engineered using Java, Spring Boot microservices, REST APIs, and React.js interfaces.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ABOUT & COMPANY PROFILE SECTION -->
-    <div id="about" class="page-section">
-      <h2 class="section-title">Company Profile & About Us</h2>
-      <div class="vertical-stack">
-        <div class="card">
-          <h3>About TM Tech Solutions</h3>
-          <p>Founded to meet the expanding technological demands of corporate environments in Saudi Arabia and the Gulf region, <strong>TM Tech Solutions</strong> specializes in delivering enterprise-grade IT infrastructure, zero-trust security postures, and custom application engineering.</p>
         </div>
 
-        <!-- FOUNDER / CEO PROFILE WITH DIRECT INLINE IMAGE DATA -->
-        <div class="founder-card">
-          <img class="founder-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Mohammed Tinku - Founder & CEO">
-          <div class="founder-info">
-            <h3>Mohammed Tinku</h3>
-            <div class="role">Founder & Chief Executive Officer</div>
-            <p><strong>Education:</strong> Bachelor of Engineering in IT (St. Martin's Engineering College)</p>
-            <p><strong>Experience:</strong> Systems & Active Directory Administration, Field Safety, Full-Stack Engineering</p>
-            <p><strong>Core Tech:</strong> Java, Spring Boot, React.js, Entra ID, Active Directory, CrowdStrike Falcon, Intune, Cisco VPN</p>
-            <p><strong>Executive Email:</strong> <a href="mailto:tinku@gulforigin.com" style="color:var(--accent); font-weight:bold;">tinku@gulforigin.com</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
+        <!-- 2. ABOUT US TAB -->
+        <div id="tab-about" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">About TM Tech Solutions</h2>
+                <p style="color: var(--text-muted);">TM Tech Solutions is a premiere technology consulting firm delivering mission-critical digital transformation, zero-trust network security, and enterprise infrastructure solutions globally.</p>
+                
+                <div class="profile-card-dark">
+                    <div class="profile-avatar-circle">MT</div>
+                    <div class="profile-details">
+                        <h3>Mohammed Tinku Uddin</h3>
+                        <p>Founder & Chief Executive Officer</p>
+                        <p style="margin-top: 4px; font-size: 0.85rem; color: #cbd5e1;">Bachelor of Engineering in Information Technology</p>
+                    </div>
+                </div>
 
-    <!-- DEPARTMENTS SECTION -->
-    <div id="departments" class="page-section">
-      <h2 class="section-title">Corporate Departments</h2>
-      <div class="vertical-stack">
-        <div class="card interactive" onclick="toggleCard(this)">
-          <h3>1. IT Sales & Commercial Account Management <span class="card-tag">Commercial</span></h3>
-          <p>Drives enterprise software licensing, hardware procurement, consulting SLA contracts, and solution bidding.</p>
-          <span class="click-hint">▼ Click to see team focus & operations</span>
-          <div class="card-details">
-            <div class="detail-box">
-              <h5>Department Operations:</h5>
-              <ul>
-                <li>Managing corporate software licenses (Microsoft 365, CrowdStrike, Cisco).</li>
-                <li>Executing Master Service Agreements (MSA) and Service Level Agreements (SLA).</li>
-              </ul>
+                <h3 style="margin-top: 25px; margin-bottom: 10px; color: var(--text-dark);">Industry Recognition & Awards</h3>
+                <div class="grid-layout">
+                    <div class="sub-card">
+                        <h3>🏆 Best Tech Solution Provider 2025</h3>
+                        <p>Recognized for excellence in IT Infrastructure management & cloud deployment.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>🛡️ Endpoint Security Excellence</h3>
+                        <p>Certified integration partner for zero-trust endpoint architectures.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>⚡ Top Full-Stack Engineering Firm</h3>
+                        <p>Awarded for enterprise software delivery and microservice reliability.</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- SERVICES SECTION -->
-    <div id="services" class="page-section">
-      <h2 class="section-title">Services & Solutions</h2>
-      <div class="vertical-stack">
-        <div class="card interactive" onclick="toggleCard(this)">
-          <h3>Active Directory & Identity Management</h3>
-          <div class="service-banner">
-            <svg viewBox="0 0 800 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="800" height="220" fill="#0f172a"/>
-              <circle cx="200" cy="110" r="40" stroke="#d4af37" stroke-width="3" fill="#1e293b"/>
-              <text x="200" y="115" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">On-Prem AD</text>
-              <line x1="240" y1="110" x2="560" y2="110" stroke="#38bdf8" stroke-width="4" stroke-dasharray="8 4"/>
-              <circle cx="400" cy="110" r="25" fill="#0284c7"/>
-              <text x="400" y="115" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">Entra Sync</text>
-              <circle cx="600" cy="110" r="40" stroke="#d4af37" stroke-width="3" fill="#1e293b"/>
-              <text x="600" y="115" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">Azure Cloud</text>
-            </svg>
-          </div>
-          <p>Design, deployment, and optimization of Active Directory Domain Services (AD DS) and Azure AD Connect synchronization.</p>
+        <!-- 3. SERVICES TAB -->
+        <div id="tab-services" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">Enterprise Service Offerings</h2>
+                <div class="grid-layout">
+                    <div class="sub-card">
+                        <h3>Managed IT Services & Active Directory</h3>
+                        <p>Complete Microsoft 365 licensing automation, Group Policy Objects (GPO), hybrid tenant synchronization, and automated system provisioning.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Cybersecurity Operations & Intune MDM</h3>
+                        <p>Real-time threat isolation, CrowdStrike Falcon setup, DLP compliance enforcement, and encrypted device management.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Hardware Sales & Custom Procurement</h3>
+                        <p>Sourcing high-performance desktop components, Intel/AMD workstations, NVIDIA RTX GPUs, DDR5 memory, and rack servers.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </div>
+        <!-- 4. SOLUTIONS TAB -->
+        <div id="tab-solutions" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">Technical Architecture & Solutions</h2>
+                <div class="grid-layout">
+                    <div class="sub-card">
+                        <h3>Full-Stack Application Development</h3>
+                        <p>Custom microservices built on Java Spring Boot, React.js frontends, and secure RESTful API integrations.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Data Analytics & BI Dashboards</h3>
+                        <p>Automated ETL pipeline development, relational database indexing in SQL, and custom interactive Power BI dashboards.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Enterprise Network & VPN Engineering</h3>
+                        <p>High-availability routing, VLAN segmentation, Cisco AnyConnect VPN configurations, and perimeter firewall installations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <footer>
-    <p>&copy; 2026 TM Tech Solutions. All rights reserved.</p>
-  </footer>
+        <!-- 5. DEPARTMENTS TAB -->
+        <div id="tab-departments" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">Regional Operating Branches & Divisions</h2>
+                <div class="grid-layout">
+                    <div class="sub-card">
+                        <h3>Riyadh Branch, KSA</h3>
+                        <p>King Fahd Road, Business Bay, Riyadh, Kingdom of Saudi Arabia</p>
+                        <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 8px;">Middle East Operations HQ</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Hyderabad HQ, India</h3>
+                        <p>Tech Park Tower, Hitec City, Hyderabad, Telangana 500081</p>
+                        <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 8px;">Engineering & R&D Hub</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Nirmal Regional Center</h3>
+                        <p>Main Road District Hub, Nirmal, Telangana 504106</p>
+                        <p style="color: var(--accent-gold); font-size: 0.85rem; font-weight: 700; margin-top: 8px;">Regional Hardware & Logistics Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <script>
-    function showSection(sectionId) {
-      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      
-      const activeSection = document.getElementById(sectionId);
-      if (activeSection) activeSection.classList.add('active');
-      
-      const activeBtn = document.getElementById('btn-' + sectionId);
-      if (activeBtn) activeBtn.classList.add('active');
-    }
+        <!-- 6. CLIENTS TAB -->
+        <div id="tab-clients" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">Global Enterprise Clients</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">We are trusted by leading corporations across finance, logistics, cloud computing, and consumer technology.</p>
+                <div class="grid-layout">
+                    <div class="sub-card">
+                        <h3>Global Financial Corp</h3>
+                        <p>Cloud Security & Hybrid Directory Integration</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Apex Logistics Hub</h3>
+                        <p>Enterprise Infrastructure & Warehouse Networking</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>CyberShield Security</h3>
+                        <p>Zero-Trust Architecture & Endpoint Management</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>NextWave Cloud Inc</h3>
+                        <p>Full-Stack Microservices & Analytics Pipeline</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>Gulf Electronics</h3>
+                        <p>Hardware Procurement & Supply Chain Systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    function toggleCard(card) {
-      card.classList.toggle('open');
-      const hint = card.querySelector('.click-hint');
-      if (hint) {
-        if (card.classList.contains('open')) {
-          hint.textContent = '▲ Click to collapse details';
-        } else {
-          hint.textContent = '▼ Click for full details & specs';
+        <!-- 7. CAREERS TAB -->
+        <div id="tab-careers" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">Careers at TM Tech Solutions</h2>
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Join our engineering and IT systems team in Riyadh or Hyderabad. Send your resume directly to Human Resources.</p>
+                <div class="hr-banner">
+                    <strong>Current Openings: Systems Engineer, Cloud Architect, Full-Stack Java Developer</strong>
+                    Direct Resume Submissions: <a href="mailto:mufeeqhr@tm.com" style="color: #854d0e; font-weight: 700;">mufeeqhr@tm.com</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. FAQS TAB -->
+        <div id="tab-faqs" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">Frequently Asked Questions</h2>
+                <div style="margin-top: 15px;">
+                    <div class="sub-card" style="margin-bottom: 15px;">
+                        <h3>What geographic regions does TM Tech Solutions serve?</h3>
+                        <p>We maintain active business operations and on-site support teams across the Kingdom of Saudi Arabia (Riyadh) and India (Hyderabad & Nirmal).</p>
+                    </div>
+                    <div class="sub-card">
+                        <h3>How can we initiate a consulting engagement?</h3>
+                        <p>Contact our Executive office at tinku@tm.com or reach out via our direct executive line at 0508893278.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. CONTACT TAB -->
+        <div id="tab-contact" class="tab-section">
+            <div class="content-card">
+                <h2 class="card-header-title">Corporate Contact & Office Location</h2>
+                
+                <div class="info-panel">
+                    <div class="info-item">
+                        <span class="info-label">Human Resources Email:</span>
+                        <span class="info-value"><a href="mailto:mufeeqhr@tm.com">mufeeqhr@tm.com</a></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Executive Office Email:</span>
+                        <span class="info-value"><a href="mailto:tinku@gulforigin.com">tinku@gulforigin.com</a> / <a href="mailto:tinku@tm.com">tinku@tm.com</a></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Executive Hotline:</span>
+                        <span class="info-value">0508893278</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Location:</span>
+                        <span class="info-value">Riyadh, Kingdom of Saudi Arabia</span>
+                    </div>
+                </div>
+
+                <div class="hr-banner">
+                    <strong>Human Resources Contact</strong>
+                    HR Direct Email: <a href="mailto:mufeeqhr@tm.com" style="color: #854d0e; font-weight: 700;">mufeeqhr@tm.com</a>
+                </div>
+
+                <div class="profile-card-dark">
+                    <div class="profile-avatar-circle">MT</div>
+                    <div class="profile-details">
+                        <h3>Mohammed Tinku Uddin</h3>
+                        <p>Founder & Chief Executive Officer</p>
+                        <p style="margin-top: 4px; font-size: 0.85rem; color: #cbd5e1;">Bachelor of Engineering in Information Technology</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        © 2026 TM Tech Solutions. All Rights Reserved. | Executive Inquiries: tinku@tm.com
+    </footer>
+
+    <!-- Interactive JavaScript Tab Switcher -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all tabs
+            const sections = document.querySelectorAll('.tab-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            // Deactivate all nav buttons
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Activate selected tab content
+            const activeTab = document.getElementById('tab-' + tabId);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+
+            // Smooth scroll up to top of content
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-      }
-    }
-  </script>
+    </script>
 </body>
 </html>
-EOF
