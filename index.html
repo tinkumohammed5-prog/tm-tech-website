@@ -74,42 +74,29 @@
             gap: 20px;
         }
 
-        nav button {
-            background: none;
-            border: none;
+        nav a {
             color: var(--text-secondary);
             font-size: 0.95rem;
             font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
             padding: 8px 16px;
             border-radius: 6px;
             transition: all 0.3s ease;
         }
 
-        nav button:hover, nav button.active {
+        nav a:hover {
             color: var(--accent-gold-light);
             background-color: rgba(212, 175, 55, 0.1);
         }
 
-        /* Main Container & Tab Sections */
+        /* Main Container */
         main {
             margin-top: var(--nav-height);
-            min-height: calc(100vh - var(--nav-height) - 80px);
             padding: 40px 5%;
         }
 
-        .tab-section {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out forwards;
-        }
-
-        .tab-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        section {
+            margin-bottom: 60px;
         }
 
         /* Hero Banner */
@@ -131,7 +118,7 @@
             font-size: 1.2rem;
             color: var(--text-secondary);
             max-width: 800px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto;
         }
 
         /* Continuous Motion Client Ticker */
@@ -140,9 +127,9 @@
             white-space: nowrap;
             background-color: var(--bg-secondary);
             padding: 15px 0;
-            border-y: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             margin-bottom: 40px;
-            position: relative;
         }
 
         .ticker-track {
@@ -174,7 +161,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            margin-bottom: 40px;
         }
 
         .card {
@@ -183,7 +169,6 @@
             border-radius: 12px;
             padding: 25px;
             transition: transform 0.3s ease, border-color 0.3s ease;
-            cursor: pointer;
         }
 
         .card:hover {
@@ -216,28 +201,13 @@
         }
 
         .expandable-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
             background-color: var(--bg-secondary);
             border-radius: 6px;
-            padding: 0 15px;
+            padding: 15px;
             font-size: 0.9rem;
             color: var(--text-secondary);
-        }
-
-        .card.expanded .expandable-details {
-            max-height: 200px;
-            padding: 15px;
-            margin-top: 15px;
             border-left: 3px solid var(--accent-gold);
-        }
-
-        .toggle-btn {
-            color: var(--accent-gold);
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
+            margin-top: 15px;
         }
 
         /* About & Profile Section */
@@ -302,7 +272,7 @@
             margin-bottom: 5px;
         }
 
-        /* Contact & Branch Section */
+        /* Contact Section */
         .contact-box {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -349,7 +319,7 @@
 
     <!-- Header Navigation -->
     <header>
-        <div class="logo-container" onclick="showSection('home')">
+        <div class="logo-container">
             <svg class="logo-crest" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M50 5 L85 25 L85 75 L50 95 L15 75 L15 25 Z" stroke="url(#gold-grad)" stroke-width="4" fill="none"/>
                 <path d="M50 15 L75 30 L75 70 L50 85 L25 70 L25 30 Z" stroke="url(#gold-grad)" stroke-width="1.5" fill="none"/>
@@ -365,10 +335,10 @@
         </div>
 
         <nav>
-            <button id="nav-home" class="active" onclick="showSection('home')">Home</button>
-            <button id="nav-services" onclick="showSection('services')">Services</button>
-            <button id="nav-about" onclick="showSection('about')">About & Profile</button>
-            <button id="nav-contact" onclick="showSection('contact')">Contact & Branches</button>
+            <a href="#sec-home">Home</a>
+            <a href="#sec-services">Services</a>
+            <a href="#sec-about">About & Profile</a>
+            <a href="#sec-contact">Contact & Branches</a>
         </nav>
     </header>
 
@@ -376,7 +346,7 @@
     <main>
 
         <!-- SECTION: HOME -->
-        <section id="sec-home" class="tab-section active">
+        <section id="sec-home">
             <div class="hero">
                 <h1>Next-Gen Enterprise Infrastructure & Software</h1>
                 <p>Delivering end-to-end cloud computing, advanced endpoint security, custom software architecture, and technology sales for worldwide operations.</p>
@@ -401,7 +371,7 @@
             <!-- Core Pillars -->
             <h2 style="margin-bottom: 20px; color: var(--accent-gold-light);">Core Capabilities</h2>
             <div class="grid-3">
-                <div class="card" onclick="toggleCard(this)">
+                <div class="card">
                     <div class="card-svg-diagram">
                         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
                             <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
@@ -409,13 +379,12 @@
                     </div>
                     <h3>IT Systems & Cloud Infrastructure</h3>
                     <p>Enterprise Active Directory Domain Services, Azure/Entra ID management, and PowerShell automated deployment.</p>
-                    <span class="toggle-btn">Click to expand technical specs ▼</span>
                     <div class="expandable-details">
                         Includes Microsoft 365 licensing automation, Group Policy Objects (GPO), hybrid tenant synchronization, and automated zero-touch system provisioning.
                     </div>
                 </div>
 
-                <div class="card" onclick="toggleCard(this)">
+                <div class="card">
                     <div class="card-svg-diagram">
                         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -423,13 +392,12 @@
                     </div>
                     <h3>Cybersecurity & Endpoint Defense</h3>
                     <p>Proactive monitoring, CrowdStrike Falcon integration, Cisco VPNs, and Microsoft Intune Mobile Device Management.</p>
-                    <span class="toggle-btn">Click to expand technical specs ▼</span>
                     <div class="expandable-details">
                         Provides real-time threat isolation, DLP compliance enforcement, automated vulnerability patching, and encrypted endpoint protection across iOS, Windows, and macOS.
                     </div>
                 </div>
 
-                <div class="card" onclick="toggleCard(this)">
+                <div class="card">
                     <div class="card-svg-diagram">
                         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
                             <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
@@ -437,7 +405,6 @@
                     </div>
                     <h3>Full-Stack Software Engineering</h3>
                     <p>Scalable web applications engineered using Java, Spring Boot microservices, REST APIs, and React.js interfaces.</p>
-                    <span class="toggle-btn">Click to expand technical specs ▼</span>
                     <div class="expandable-details">
                         Custom database design using SQL and ETL pipelines, Power BI business analytics integrations, and encrypted single-page web architecture.
                     </div>
@@ -446,10 +413,10 @@
         </section>
 
         <!-- SECTION: SERVICES -->
-        <section id="sec-services" class="tab-section">
+        <section id="sec-services">
             <h2 style="margin-bottom: 25px; color: var(--accent-gold-light);">Our Service Catalog</h2>
             <div class="grid-3">
-                <div class="card" onclick="toggleCard(this)">
+                <div class="card">
                     <div class="card-svg-diagram">
                         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
@@ -457,13 +424,12 @@
                     </div>
                     <h3>Enterprise Network Design</h3>
                     <p>High-availability routing, VPN tunneling, VLAN segmentation, and perimeter firewall installation.</p>
-                    <span class="toggle-btn">Click to view details ▼</span>
                     <div class="expandable-details">
                         Redundant gateway design with failover protection, automated traffic shaping, and remote access VPN setup via Cisco AnyConnect.
                     </div>
                 </div>
 
-                <div class="card" onclick="toggleCard(this)">
+                <div class="card">
                     <div class="card-svg-diagram">
                         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
                             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
@@ -471,13 +437,12 @@
                     </div>
                     <h3>Hardware Sales & Procurement</h3>
                     <p>Sourcing high-performance desktop components, workstations, servers, and multi-display rigs.</p>
-                    <span class="toggle-btn">Click to view details ▼</span>
                     <div class="expandable-details">
                         Custom hardware procurement matching precise workloads: Intel/AMD multi-core CPUs, NVIDIA RTX GPUs, high-frequency DDR5 memory, and modular server rack assemblies.
                     </div>
                 </div>
 
-                <div class="card" onclick="toggleCard(this)">
+                <div class="card">
                     <div class="card-svg-diagram">
                         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
                             <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
@@ -485,7 +450,6 @@
                     </div>
                     <h3>Data Analytics & BI Dashboards</h3>
                     <p>Turning complex organizational datasets into real-time interactive business intelligence.</p>
-                    <span class="toggle-btn">Click to view details ▼</span>
                     <div class="expandable-details">
                         Automated ETL pipeline development, relational database indexing, and custom interactive Power BI reporting dashboards for executive oversight.
                     </div>
@@ -494,7 +458,7 @@
         </section>
 
         <!-- SECTION: ABOUT & PROFILE -->
-        <section id="sec-about" class="tab-section">
+        <section id="sec-about">
             <h2 style="margin-bottom: 25px; color: var(--accent-gold-light);">Leadership & Corporate Profile</h2>
             
             <div class="profile-container">
@@ -527,7 +491,7 @@
         </section>
 
         <!-- SECTION: CONTACT & BRANCH LOCATOR -->
-        <section id="sec-contact" class="tab-section">
+        <section id="sec-contact">
             <h2 style="margin-bottom: 25px; color: var(--accent-gold-light);">Contact Us & Branch Locations</h2>
             
             <div class="contact-box">
@@ -578,44 +542,5 @@
         <div>Confidentiality Notice: Built for Enterprise Operations</div>
     </footer>
 
-    <!-- Interactive Navigation & Card Expansion JavaScript -->
-    <script>
-        function showSection(sectionId) {
-            // Hide all tab sections
-            const sections = document.querySelectorAll('.tab-section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            // Deactivate all nav buttons
-            const buttons = document.querySelectorAll('nav button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Show selected section
-            const targetSection = document.getElementById('sec-' + sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-
-            // Highlight active button
-            const targetBtn = document.getElementById('nav-' + sectionId);
-            if (targetBtn) {
-                targetBtn.classList.add('active');
-            }
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleCard(cardElement) {
-            cardElement.classList.toggle('expanded');
-            const toggleText = cardElement.querySelector('.toggle-btn');
-            if (toggleText) {
-                if (cardElement.classList.contains('expanded')) {
-                    toggleText.textContent = 'Click to collapse ▲';
-                } else {
-                    toggleText.textContent = 'Click to expand technical specs ▼';
-                }
-            }
-        }
-    </script>
 </body>
 </html>
